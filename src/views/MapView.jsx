@@ -11,6 +11,7 @@ function MapView({ location }) {
     );
   }
 
+  // Leaflet expects the map position as [latitude, longitude].
   const position = [location.latitude, location.longitude];
 
   return (
@@ -22,10 +23,10 @@ function MapView({ location }) {
       </p>
 
       <div className="map-container">
-        <MapContainer
-          center={position}
-          zoom={14}
-        >
+        {/* Create the interactive Leaflet map and center it on the searched area */}
+        <MapContainer center={position} zoom={14}>
+
+        {/* OpenStreetMap tiles as the map's visual background */}
           <TileLayer
             attribution="&copy; OpenStreetMap contributors"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -43,3 +44,5 @@ function MapView({ location }) {
 }
 
 export default MapView;
+
+

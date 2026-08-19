@@ -43,6 +43,7 @@ function AmenitiesView({ location }) {
     async function fetchAmenities() {
       setLoading(true);
 
+      //Search for different types of amenities within 3 km of the searched area's latitude and longitude      const query = `
       const query = `
         [out:json];
         (

@@ -14,18 +14,16 @@ function AreaSearchForm({ setLocation }) {
     setLoading(true);
 
     try {
+        // Add Kenya to the search so the geocoding request focuses on Kenyan locations.
       const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
         area + ", Kenya"
       )}&format=json`;
 
       const response = await fetch(url);
-
       if (!response.ok) {
         throw new Error("Something went wrong while searching.");
       }
-
       const data = await response.json();
-
       console.log("Nominatim response:", data);
 
       if (data.length === 0) {
@@ -35,13 +33,16 @@ function AreaSearchForm({ setLocation }) {
 
       const result = data[0];
 
+      // Save the first matching result so the map and amenities views can use the same location.
       setLocation({
         areaName: result.display_name,
         latitude: Number(result.lat),
         longitude: Number(result.lon),
       });
+
     } catch (error) {
       console.error("Search failed:", error);
+      
     } finally {
       setLoading(false);
     }
