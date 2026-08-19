@@ -1,10 +1,20 @@
-function AmenitiesView() {
+function AmenitiesView({ location }) {
     return (
       <div>
         <h1>Amenities</h1>
-        <p>Nearby schools, hospitals, transport and markets will appear here.</p>
+  
+        {location ? (
+          <p>
+            Searching for amenities near{" "}
+            {location.areaName}.
+          </p>
+        ) : (
+          <p>Search for an area first.</p>
+        )}
       </div>
     );
   }
+  
 
 export default AmenitiesView;
+
