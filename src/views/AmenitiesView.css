@@ -1,13 +1,23 @@
 .amenities-view {
-  padding: 2rem;
+  padding: 1rem 0;
 }
 .amenities-view h1 {
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem;
+  color: #0f172a;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.amenities-view > p {
+  margin: 0;
+  color: #64748b;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 .amenities-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.1rem;
   margin-top: 2rem;
 }
 @media (min-width: 768px) {

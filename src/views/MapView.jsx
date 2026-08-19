@@ -38,16 +38,6 @@ function MapView({ location }) {
           </Marker>
         </MapContainer>
       </div>
-
-      <div className="coordinates">
-        <p>
-          <strong>Latitude:</strong> {location.latitude}
-        </p>
-
-        <p>
-          <strong>Longitude:</strong> {location.longitude}
-        </p>
-      </div>
     </div>
   );
 }

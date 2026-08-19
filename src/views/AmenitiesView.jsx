@@ -40,7 +40,6 @@ function AmenitiesView({ location }) {
     if (!location) {
       return;
     }
-
     async function fetchAmenities() {
       setLoading(true);
 
