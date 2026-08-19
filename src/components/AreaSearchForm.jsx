@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./AreaSearchForm.css";
 
 function AreaSearchForm({ setLocation }) {
   const [area, setArea] = useState("");
@@ -18,16 +19,20 @@ function AreaSearchForm({ setLocation }) {
       )}&format=json`;
 
       const response = await fetch(url);
+
       if (!response.ok) {
         throw new Error("Something went wrong while searching.");
       }
+
       const data = await response.json();
+
       console.log("Nominatim response:", data);
 
       if (data.length === 0) {
         console.log("Area not found.");
         return;
       }
+
       const result = data[0];
 
       setLocation({
@@ -35,33 +40,32 @@ function AreaSearchForm({ setLocation }) {
         latitude: Number(result.lat),
         longitude: Number(result.lon),
       });
-
     } catch (error) {
       console.error("Search failed:", error);
-
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="area-search-form" onSubmit={handleSubmit}>
       <label htmlFor="area">Area</label>
 
-      <input
-        id="area"
-        type="text"
-        value={area}
-        onChange={(event) => setArea(event.target.value)}
-        placeholder="Elgon View"
-      />
+      <div className="search-input-group">
+        <input
+          id="area"
+          type="text"
+          value={area}
+          onChange={(event) => setArea(event.target.value)}
+          placeholder="e.g. Elgon View"
+        />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Searching..." : "Search"}
-      </button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Searching..." : "Search"}
+        </button>
+      </div>
     </form>
   );
 }
 
 export default AreaSearchForm;
-
